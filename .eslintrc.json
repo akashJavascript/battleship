@@ -1,18 +1,18 @@
 {
-  "env": {
-    "browser": true,
-    "es2021": true
-  },
-  "extends": ["airbnb-base", "plugin:prettier/recommended"],
-  "plugins": ["prettier"],
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "jest/globals": true
+    },
+    "extends": ["airbnb-base", "plugin:prettier/recommended","plugin:jest/recommended"],
+    "plugins": ["prettier", "jest"],
 
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module"
-  },
-  "rules": {
-    "no-console": "off",
-
-    "no-unused-vars": "off"
-  }
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-console": "off",
+        "no-unused-vars": "off"
+    }
 }
