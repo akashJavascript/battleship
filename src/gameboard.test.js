@@ -42,4 +42,3 @@ test('Gameboard needs to keep track of missed attacks', () => {
     gameboard.receiveAttack([4, 0]);
     expect(gameboard.missedAttacks.length).toBe(1);
 });
-

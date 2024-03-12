@@ -41,6 +41,6 @@ function Gameboard() {
             }
         }
     }
-    return { placeShip, missedAttacks, receiveAttack };
+    return { placeShip, missedAttacks, receiveAttack,allSunk };
 }
 export default Gameboard;
