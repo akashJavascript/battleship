@@ -1,3 +1,45 @@
-body{
-    background-color: green;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.player-board {
+    display: grid;
+    height: 400px;
+    width: 400px;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+.cell {
+    display: flex;
+    background-color: #f4f4f5;
+    justify-content: center;
+    border: 1px solid black;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    height: 100vh;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+}
+.header-container {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.missed {
+    background-color: #86efac;
+}
+.hit {
+    background-color: #ff7f7f;
 }

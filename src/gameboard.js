@@ -17,12 +17,11 @@ function Gameboard() {
         ships.forEach(({ ship, positions }) => {
             positions.forEach((shipPosition, index) => {
                 if (JSON.stringify(shipPosition) === JSON.stringify(position)) {
-                    ship.hit(index);
+                    ship.hit();
                     hit = true;
                 }
             });
         });
-        allSunk(hit);
         if (!hit) {
             missedAttacks.push(position);
         }
@@ -39,8 +38,10 @@ function Gameboard() {
             if (sunk) {
                 return true;
             }
+            return false;
         }
+        return undefined;
     }
-    return { placeShip, missedAttacks, receiveAttack,allSunk };
+    return { placeShip, missedAttacks, receiveAttack, allSunk, ships };
 }
 export default Gameboard;
