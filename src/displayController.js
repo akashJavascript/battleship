@@ -9,20 +9,20 @@ function DisplayController() {
             const cell = document.createElement('div');
             cell.classList.add('cell');
             cell.setAttribute('data-index', currentCoords);
-            cell.setAttribute('data-clicked', false)
+            cell.setAttribute('data-clicked', false);
             board.appendChild(cell);
             currentCoords[0] += 1;
         }
     }
-    function markCellAsMissed(position) {
+    function markCellAsMissed(position, gameboard) {
         document
-            .querySelector(`.player2-board > [data-index="${position}"]`)
+            .querySelector(`.${gameboard}-board > [data-index="${position}"]`)
             .classList.add('missed');
-        console.log('a');
     }
-    function markCellAsHit(position) {
-        document.querySelector(`.player2-board > [data-index="${position}"]`).classList.add('hit');
-        console.log('b');
+    function markCellAsHit(position, gameboard) {
+        document
+            .querySelector(`.${gameboard}-board > [data-index="${position}"]`)
+            .classList.add('hit');
     }
     return { createCellEls, markCellAsHit, markCellAsMissed };
 }

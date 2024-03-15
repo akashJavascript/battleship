@@ -2,7 +2,7 @@ import Ship from './ship';
 
 function Gameboard() {
     const ships = [];
-    const missedAttacks = [];
+    const visitedAttacks = [];
     function placeShip(length, position) {
         const newShip = Ship(length);
         const positions = [];
@@ -22,9 +22,14 @@ function Gameboard() {
                 }
             });
         });
-        if (!hit) {
-            missedAttacks.push(position);
-        }
+
+        // const alreadyAttacked = visitedAttacks.some(
+        //     (attack) => JSON.stringify(attack) === JSON.stringify(position),
+        // );
+
+        // if (!alreadyAttacked) {
+        //     visitedAttacks.push(position);
+        // }
         return hit;
     }
     function allSunk(hit) {
@@ -42,6 +47,6 @@ function Gameboard() {
         }
         return undefined;
     }
-    return { placeShip, missedAttacks, receiveAttack, allSunk, ships };
+    return { placeShip, visitedAttacks, receiveAttack, allSunk, ships };
 }
 export default Gameboard;

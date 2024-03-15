@@ -15,6 +15,9 @@ function gameLoop() {
     displayController.createCellEls(player1BoardEl);
     displayController.createCellEls(player2BoardEl);
     const cellsEls = document.querySelectorAll('.player2-board > .cell');
+
+    let currentPlayer = player1;
+    let currentBoard = player2Board;
     cellsEls.forEach((cell) => {
         cell.addEventListener('click', (e) => {
             if (e.target.getAttribute('data-clicked') === 'true') return;
@@ -22,9 +25,29 @@ function gameLoop() {
             const position = e.target.getAttribute('data-index').split(',').map(Number);
             const attack = player1.sendAttack(position, player2Board);
             if (attack) {
-                displayController.markCellAsHit(position);
+                displayController.markCellAsHit(position, 'player2');
+                if (player2Board.allSunk(true)) {
+                    alert('Player 1 wins!');
+                }
             } else {
-                displayController.markCellAsMissed(position);
+                displayController.markCellAsMissed(position, 'player2');
+            }
+            currentPlayer = currentPlayer === player1 ? player2 : player1;
+            currentBoard = currentBoard === player2Board ? player1Board : player2Board;
+            if (currentPlayer === player2) {
+                const cpuAttack = player2.sendAttack(player1Board);
+                const attackHit = cpuAttack[0];
+                const cpuAttackPosition = cpuAttack[1];
+                if (attackHit) {
+                    displayController.markCellAsHit(cpuAttackPosition, 'player1');
+                    if (player1Board.allSunk(true)) {
+                        alert('Player 2 wins!');
+                    }
+                } else {
+                    displayController.markCellAsMissed(cpuAttackPosition, 'player1');
+                }
+                currentPlayer = player1;
+                currentBoard = player2Board;
             }
         });
     });
@@ -34,32 +57,10 @@ function gameLoop() {
     player1Board.placeShip(3, [1, 2]);
     player1Board.placeShip(3, [4, 5]);
     player1Board.placeShip(2, [4, 1]);
-    player2Board.placeShip(5, [7, 2]);
+    player2Board.placeShip(5, [5, 2]);
     player2Board.placeShip(4, [1, 0]);
     player2Board.placeShip(3, [2, 5]);
     player2Board.placeShip(3, [3, 6]);
-    player2Board.placeShip(2, [4, 5]);
-    while (true) {
-        const player1Attack = player1.sendAttack(
-            [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)],
-            player2Board,
-        );
-        const player2Attack = player2.sendAttack(player1Board);
-        if (player1Attack) {
-            // console.log('Player 1 hit');
-        } else {
-            // console.log('Player 1 missed');
-        }
-        if (player2Attack) {
-            // console.log('Player 2 hit');
-        } else {
-            // console.log('Player 2 missed');
-        }
-        if (player1Board.allSunk(true) || player2Board.allSunk(true)) {
-            console.log(player2Board.allSunk(true));
-
-            break;
-        }
-    }
+    player2Board.placeShip(2, [6, 5]);
 }
 gameLoop();
