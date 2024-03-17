@@ -1,8 +1,6 @@
 // TODOS
-//* 1. let the player place ships at the start
-// 2. Restart game on game end
 // 3. Make a "smart" cpu
-
+// 7. Change the alert for page text  
 import './style.css';
 import { player, cpuPlayer } from './player';
 import Ship from './ship';

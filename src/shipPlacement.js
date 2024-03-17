@@ -1,4 +1,3 @@
-// 7. Change the alert for page text
 import DisplayController from './displayController';
 
 let displayController = DisplayController();
