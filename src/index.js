@@ -8,14 +8,13 @@ import { player, cpuPlayer } from './player';
 import Ship from './ship';
 import Gameboard from './gameboard';
 import DisplayController from './displayController';
-import shipPlacement, {resetAvailShips} from './shipPlacement';
+import shipPlacement, { resetAvailShips } from './shipPlacement';
 
 const player1BoardEl = document.querySelector('.player1-board');
 const player2BoardEl = document.querySelector('.player2-board');
 function gameLoop() {
     const displayController = DisplayController();
     const player1 = player();
-    console.log(player1);
     const player2 = cpuPlayer();
     const player1Board = player1.gameboard;
     const player2Board = player2.gameboard;
@@ -27,10 +26,8 @@ function gameLoop() {
     let currentBoard = player2Board;
     placeShipEls.forEach((cell) => {
         function placeShipHandler(e) {
-            console.log('b');
             const position = e.target.getAttribute('data-index').split(',').map(Number);
             const shipPlaced = shipPlacement(position, player1Board);
-            console.log(position,shipPlaced);
             if (!shipPlaced) {
                 // If all ships have been placed, remove the event listener
                 cell.removeEventListener('click', placeShipHandler);
@@ -47,7 +44,6 @@ function gameLoop() {
         }
         cell.addEventListener('click', placeShipHandler);
         function gameLoopHandler(e) {
-            console.log('a');
             if (e.target.getAttribute('data-clicked') === 'true') return;
             e.target.setAttribute('data-clicked', true);
             const position = e.target.getAttribute('data-index').split(',').map(Number);
@@ -58,7 +54,6 @@ function gameLoop() {
                     alert('Player 1 wins!');
                 }
             } else {
-                console.log(position);
                 displayController.markCellAsMissed(position, 'player2');
             }
             currentPlayer = currentPlayer === player1 ? player2 : player1;
@@ -100,7 +95,6 @@ function gameLoop() {
     // player2Board.placeShip(2, [6, 5]);
 }
 function resetGame(gameboard1El, gameboard2El, displayController, gameboard1, gameboard2) {
-    console.log(gameboard1El, gameboard2El);
     displayController.resetCells(gameboard1El, gameboard2El);
     gameboard1.clearShips();
     gameboard2.clearShips();

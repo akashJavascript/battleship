@@ -37,10 +37,8 @@ function DisplayController() {
         let cells = document.querySelectorAll('.cell');
         cells.forEach((cell) => {
             cell.parentNode.removeChild(cell);
-            console.log(cell);
         });
         cells = document.querySelectorAll('.cell');
-        console.log(cells);
     }
     return { createCellEls, markCellAsHit, markCellAsMissed, markShips, resetCells };
 }

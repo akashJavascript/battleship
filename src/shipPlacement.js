@@ -11,7 +11,6 @@ function shipPlacement(position, gameboard) {
         displayController.markShips(position, availShips[0], 'player1');
         availShips.shift();
     }
-    console.log(availShips.length > 0);
     return availShips.length > 0;
 }
 function noShipCollisions(position, length, gameboard) {
