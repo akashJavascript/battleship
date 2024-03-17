@@ -1,6 +1,6 @@
 function DisplayController() {
     function createCellEls(board) {
-        let currentCoords = [0, 0];
+        const currentCoords = [0, 0];
         for (let i = 0; i < 100; i += 1) {
             if (currentCoords[0] > 9) {
                 currentCoords[0] = 0;
@@ -24,7 +24,25 @@ function DisplayController() {
             .querySelector(`.${gameboard}-board > [data-index="${position}"]`)
             .classList.add('hit');
     }
-    return { createCellEls, markCellAsHit, markCellAsMissed };
+    function markShips(position, length, gameboard) {
+        for (let i = 0; i < length; i += 1) {
+            document
+                .querySelector(
+                    `.${gameboard}-board > [data-index="${[position[0] + i, position[1]]}"]`,
+                )
+                .classList.add('ship');
+        }
+    }
+    function resetCells(gameboard1, gameboard2) {
+        let cells = document.querySelectorAll('.cell');
+        cells.forEach((cell) => {
+            cell.parentNode.removeChild(cell);
+            console.log(cell);
+        });
+        cells = document.querySelectorAll('.cell');
+        console.log(cells);
+    }
+    return { createCellEls, markCellAsHit, markCellAsMissed, markShips, resetCells };
 }
 
 export default DisplayController;

@@ -43,3 +43,16 @@ body {
 .hit {
     background-color: #ff7f7f;
 }
+.board-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+h2{
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+.ship{
+    background-color: grey;
+}

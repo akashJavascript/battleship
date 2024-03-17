@@ -22,14 +22,6 @@ function Gameboard() {
                 }
             });
         });
-
-        // const alreadyAttacked = visitedAttacks.some(
-        //     (attack) => JSON.stringify(attack) === JSON.stringify(position),
-        // );
-
-        // if (!alreadyAttacked) {
-        //     visitedAttacks.push(position);
-        // }
         return hit;
     }
     function allSunk(hit) {
@@ -47,6 +39,9 @@ function Gameboard() {
         }
         return undefined;
     }
-    return { placeShip, visitedAttacks, receiveAttack, allSunk, ships };
+    function clearShips() {
+        ships.length = 0;
+    }
+    return { placeShip, visitedAttacks, receiveAttack, allSunk, ships, clearShips };
 }
 export default Gameboard;
