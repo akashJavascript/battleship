@@ -1,6 +1,5 @@
 // TODOS
 // 3. Make a "smart" cpu
-// 7. Change the alert for page text  
 import './style.css';
 import { player, cpuPlayer } from './player';
 import Ship from './ship';
@@ -9,6 +8,7 @@ import DisplayController from './displayController';
 import shipPlacement, { resetAvailShips } from './shipPlacement';
 
 const player1BoardEl = document.querySelector('.player1-board');
+const infoEl = document.querySelector('.info');
 const player2BoardEl = document.querySelector('.player2-board');
 function gameLoop() {
     const displayController = DisplayController();
@@ -27,6 +27,7 @@ function gameLoop() {
             const position = e.target.getAttribute('data-index').split(',').map(Number);
             const shipPlaced = shipPlacement(position, player1Board);
             if (!shipPlaced) {
+                infoEl.textContent = 'Attack!';
                 // If all ships have been placed, remove the event listener
                 cell.removeEventListener('click', placeShipHandler);
                 // remove the ship class for all ships
@@ -49,7 +50,14 @@ function gameLoop() {
             if (attack) {
                 displayController.markCellAsHit(position, 'player2');
                 if (player2Board.allSunk(true)) {
-                    alert('Player 1 wins!');
+                    infoEl.textContent = 'Player 1 wins!';
+                    resetGame(
+                        player1BoardEl,
+                        player2BoardEl,
+                        displayController,
+                        player1Board,
+                        player2Board,
+                    );
                 }
             } else {
                 displayController.markCellAsMissed(position, 'player2');
@@ -63,7 +71,7 @@ function gameLoop() {
                 if (attackHit) {
                     displayController.markCellAsHit(cpuAttackPosition, 'player1');
                     if (player1Board.allSunk(true)) {
-                        alert('Player 2 wins!');
+                        infoEl.textContent = 'CPU wins!';
                         resetGame(
                             player1BoardEl,
                             player2BoardEl,

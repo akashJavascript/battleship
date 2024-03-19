@@ -23,11 +23,13 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-top: 20px;
-    height: 100vh;
+    margin-top: 15%;
 }
 body {
     font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 .header-container {
     margin-top: 20px;
@@ -55,4 +57,10 @@ h2{
 }
 .ship{
     background-color: grey;
+}
+.info-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
