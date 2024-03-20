@@ -1,5 +1,4 @@
 // TODOS
-// 3. Make a "smart" cpu
 import './style.css';
 import { player, cpuPlayer } from './player';
 import Ship from './ship';
@@ -88,17 +87,6 @@ function gameLoop() {
             }
         }
     });
-
-    // player1Board.placeShip(5, [0, 0]);
-    // player1Board.placeShip(4, [6, 0]);
-    // player1Board.placeShip(3, [1, 2]);
-    // player1Board.placeShip(3, [4, 5]);
-    // player1Board.placeShip(2, [4, 1]);
-    // player2Board.placeShip(5, [5, 2]);
-    // player2Board.placeShip(4, [1, 0]);
-    // player2Board.placeShip(3, [2, 5]);
-    // player2Board.placeShip(3, [3, 6]);
-    // player2Board.placeShip(2, [6, 5]);
 }
 function resetGame(gameboard1El, gameboard2El, displayController, gameboard1, gameboard2) {
     displayController.resetCells(gameboard1El, gameboard2El);
